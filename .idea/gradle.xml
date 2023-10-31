@@ -10,7 +10,31 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/common-ui" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/common" />
+            <option value="$PROJECT_DIR$/core/common/config-provider" />
+            <option value="$PROJECT_DIR$/core/common/converter" />
+            <option value="$PROJECT_DIR$/core/common/network" />
+            <option value="$PROJECT_DIR$/core/common/serializer" />
+            <option value="$PROJECT_DIR$/core/common/state-handler" />
+            <option value="$PROJECT_DIR$/core/common/utils" />
+            <option value="$PROJECT_DIR$/core/core" />
+            <option value="$PROJECT_DIR$/core/mvi-android" />
+            <option value="$PROJECT_DIR$/core/mvi-coroutines" />
+            <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/core/ui/compose" />
+            <option value="$PROJECT_DIR$/core/ui/preview" />
+            <option value="$PROJECT_DIR$/core/ui/splash_screen" />
+            <option value="$PROJECT_DIR$/core/ui/status-bar-controller" />
+            <option value="$PROJECT_DIR$/pos" />
+            <option value="$PROJECT_DIR$/pos/app" />
+            <option value="$PROJECT_DIR$/pos/common-data" />
+            <option value="$PROJECT_DIR$/pos/erp-api" />
+            <option value="$PROJECT_DIR$/pos/erp-schema" />
+            <option value="$PROJECT_DIR$/pos/main" />
+            <option value="$PROJECT_DIR$/settings" />
           </set>
         </option>
       </GradleProjectSettings>
