@@ -26,8 +26,6 @@ import net.nomia.mvi.utils.distinctUntilChangedControlled
 import net.nomia.mvi.utils.logValue
 import net.nomia.mvi.utils.materialize
 import net.nomia.mvi.utils.share
-import net.nomia.utils.logger.Logger
-import net.nomia.utils.logger.coroutine.log
 import java.util.concurrent.atomic.AtomicInteger
 
 
@@ -120,7 +118,6 @@ open class MviFeature<Action : Any, Effect : Any, State : Any, Event : Any>(
                 emit(Notification.OnNext(initialState))
             }
             .distinctUntilChanged()
-            .log(tag, "state")
             .flowOn(stateFlowDispatcher)
             .share(shareScope)
             .trackSubscribers()
@@ -174,7 +171,6 @@ open class MviFeature<Action : Any, Effect : Any, State : Any, Event : Any>(
                         eventsFlow.emit(event)
                     }
             } catch (error: Throwable) {
-                Logger.e(tag, error, "exception while producing event")
                 emit(Notification.OnError(error))
             }
         }

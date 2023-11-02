@@ -130,7 +130,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.timber)
     implementation(libs.xlog)
-    implementation(libs.logger)
+    implementation(libs.timber)
     implementation(libs.kstatemachine)
     implementation(libs.moneta) {
         exclude(group = "javax.annotation")

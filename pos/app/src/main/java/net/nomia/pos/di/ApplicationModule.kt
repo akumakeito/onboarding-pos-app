@@ -10,11 +10,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import net.nomia.main.config.MainDatabase
 import net.nomia.pos.core.handler.OnApplicationCreated
-import net.nomia.pos.log.TimberLogger
 import net.nomia.pos.ui.domain.LogoutUseCase
 import net.nomia.pos.ui.domain.LogoutUseCaseImpl
 import net.nomia.settings.config.SettingsDatabase
-import net.nomia.utils.logger.Logger
 import javax.inject.Singleton
 
 @Module
@@ -25,13 +23,6 @@ internal class ApplicationModule {
     @Provides
     fun applicationScopeProvide(): CoroutineScope =
         CoroutineScope(SupervisorJob() + Dispatchers.Main)
-
-    @Singleton
-    @Provides
-    @IntoSet
-    fun provideLogger() = OnApplicationCreated {
-        Logger.setLogger(TimberLogger())
-    }
 
     @Provides
     fun provideLogoutUseCase(

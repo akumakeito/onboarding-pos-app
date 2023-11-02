@@ -1,25 +1,12 @@
 rootProject.name = "Manager App"
 
 dependencyResolutionManagement {
-    val gitLabPrivateTokenType: String by settings
-    val gitLabPrivateToken: String by settings
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         mavenLocal()
         mavenCentral()
         google()
         maven("https://androidx.dev/snapshots/builds/7633184/artifacts/repository")
-        maven {
-            name = "gitlab-maven"
-            url = uri("https://nomia.dev/api/v4/groups/nomia/-/packages/maven")
-            credentials(HttpHeaderCredentials::class.java) {
-                name = gitLabPrivateTokenType
-                value = gitLabPrivateToken
-            }
-            authentication {
-                create<HttpHeaderAuthentication>("header")
-            }
-        }
         maven("https://jitpack.io")
     }
 }

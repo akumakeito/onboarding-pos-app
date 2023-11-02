@@ -8,7 +8,6 @@ plugins {
 
 dependencies {
     implementation(libs.kotlinxCoroutines)
-    implementation(libs.logger)
 }
 
 java {
