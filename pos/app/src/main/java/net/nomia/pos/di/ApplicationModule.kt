@@ -4,14 +4,12 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dagger.multibindings.IntoSet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import net.nomia.main.config.MainDatabase
-import net.nomia.pos.core.handler.OnApplicationCreated
-import net.nomia.pos.ui.domain.LogoutUseCase
-import net.nomia.pos.ui.domain.LogoutUseCaseImpl
+import net.nomia.auth.domain.LogoutUseCase
+import net.nomia.auth.domain.LogoutUseCaseImpl
 import net.nomia.settings.config.SettingsDatabase
 import javax.inject.Singleton
 

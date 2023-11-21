@@ -1,12 +1,6 @@
 import net.nomia.gradle.AppGradleExtension.applyComposeConfig
-import net.nomia.gradle.AppGradleExtension.applyDefaultConfig
-import net.nomia.gradle.AppInfoProperties
 import net.nomia.gradle.GradleExtension.getGeneralKotlinConfigure
-import net.nomia.gradle.RoomExportSchemeProperties
 import net.nomia.gradle.Version
-import net.nomia.gradle.getVersionCodeFromProperties
-import net.nomia.gradle.getVersionNameFromProperties
-import net.nomia.gradle.runCommand
 import java.util.*
 
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -139,6 +133,8 @@ dependencies {
 
     implementation(libs.toolargetool)
 
+
+    implementation(project(":pos:auth"))
     implementation(project(":core:core"))
     implementation(project(":core:common:network"))
     implementation(project(":core:common:utils"))

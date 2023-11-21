@@ -13,7 +13,6 @@ import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -24,14 +23,15 @@ import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
+import net.nomia.auth.navigation.components.NomiaExternalAuthNavHost
+import net.nomia.auth.navigation.components.NomiaInternalAuthNavHost
 import net.nomia.common.ui.theme.NomiaThemeMaterial3
 import net.nomia.common.ui.theme.model.useDarkTheme
 import net.nomia.core.ui.compose.LocalResourcesProvider
 import net.nomia.pos.R
 import net.nomia.pos.core.provider.ResourcesProvider
+import net.nomia.pos.ui.navigation.components.*
 import net.nomia.pos.ui.navigation.components.NomiaAuthorizedNavHost
-import net.nomia.pos.ui.navigation.components.NomiaExternalAuthNavHost
-import net.nomia.pos.ui.navigation.components.NomiaInternalAuthNavHost
 import net.nomia.pos.ui.navigation.model.AppStartDestination
 import javax.inject.Inject
 

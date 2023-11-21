@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -30,7 +31,9 @@
             <option value="$PROJECT_DIR$/core/ui/status-bar-controller" />
             <option value="$PROJECT_DIR$/pos" />
             <option value="$PROJECT_DIR$/pos/app" />
+            <option value="$PROJECT_DIR$/pos/auth" />
             <option value="$PROJECT_DIR$/pos/common-data" />
+            <option value="$PROJECT_DIR$/pos/dashboard" />
             <option value="$PROJECT_DIR$/pos/erp-api" />
             <option value="$PROJECT_DIR$/pos/erp-schema" />
             <option value="$PROJECT_DIR$/pos/main" />
