@@ -5,12 +5,10 @@ import net.nomia.common.data.model.Menu
 import net.nomia.common.data.model.Organization
 import net.nomia.common.data.model.Store
 import net.nomia.common.data.model.Terminal
-import net.nomia.settings.data.local.entity.ApplicationTokenData
 import net.nomia.settings.data.local.entity.MenuData
 import net.nomia.settings.data.local.entity.OrganizationData
 import net.nomia.settings.data.local.entity.ServerProviderData
 import net.nomia.settings.data.local.entity.TerminalEntity
-import net.nomia.settings.domain.model.ApplicationToken
 import net.nomia.settings.domain.model.ServerProvider
 
 fun ServerProvider.toEntity() = when (this) {
@@ -76,14 +74,4 @@ fun OrganizationData.toDomain() = Organization(
     name = name,
     code = Organization.Code(code),
     currency = currency,
-)
-
-fun ApplicationTokenData.toDomain() = ApplicationToken(
-    accessToken = JWT(accessToken),
-    refreshToken = refreshToken?.let(::JWT)
-)
-
-fun ApplicationToken.toEntity() = ApplicationTokenData(
-    accessToken = accessToken.toString(),
-    refreshToken = refreshToken?.toString()
 )

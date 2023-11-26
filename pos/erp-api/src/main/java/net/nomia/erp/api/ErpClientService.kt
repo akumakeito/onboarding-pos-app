@@ -3,16 +3,11 @@ package net.nomia.erp.api
 import android.app.Application
 import android.content.pm.PackageManager
 import com.apollographql.apollo.ApolloClient
-import com.apollographql.apollo.subscription.SubscriptionConnectionParams
-import com.apollographql.apollo.subscription.WebSocketSubscriptionTransport
 import com.auth0.android.jwt.JWT
 import io.sentry.apollo.SentryApolloInterceptor
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
 import net.nomia.common.data.model.Organization
 import net.nomia.erp.api.adapter.BigDecimalAdapter
 import net.nomia.erp.api.adapter.InstantAdapter
@@ -39,38 +34,6 @@ class ErpClientService @Inject constructor(
     private val app: Application,
     scope: CoroutineScope
 ) {
-
-    private val application: Flow<ApolloClient?> = combine(
-        settingsRepository.getServerProvider(),
-        settingsRepository.getOrganizationId(),
-        settingsRepository.getApplicationToken()
-    ) { provider, organizationId, token ->
-        if (organizationId != null && token != null) {
-            val okHttpClient = okHttpClientBuilder()
-                .addInterceptor(AuthorizationInterceptor(token.accessToken))
-                .addInterceptor(OrganizationInterceptor(organizationId))
-                .build()
-            return@combine apolloClientBuilder(provider, okHttpClient)
-                .subscriptionTransportFactory(
-                    WebSocketSubscriptionTransport.Factory(
-                        provider.wss,
-                        okHttpClient
-                    )
-                )
-                .subscriptionConnectionParams(
-                    SubscriptionConnectionParams(
-                        mutableMapOf(
-                            "Authorization" to "Bearer ${token.accessToken}",
-                            "OrganizationId" to organizationId.value
-                        )
-                    )
-                ).build()
-        }
-
-        null
-    }.stateIn(scope, SharingStarted.Eagerly, null)
-
-    fun applicationClient() = application
 
     fun principalClient(
         token: JWT? = null,

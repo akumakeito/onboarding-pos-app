@@ -42,9 +42,9 @@ import net.nomia.common.ui.extensions.clickableNoIndication
 import net.nomia.common.ui.theme.spacers
 import net.nomia.auth.ui.composable.CodeField
 import net.nomia.auth.ui.external.ExternalAuthViewModel
-import net.nomia.pos.ui.auth.external.model.ExternalAuthUiState
-import net.nomia.auth.ui.internal.model.Code
-import net.nomia.auth.ui.internal.model.drawNumericPattern
+import net.nomia.auth.ui.external.model.Code
+import net.nomia.auth.ui.external.model.drawNumericPattern
+import net.nomia.auth.ui.external.model.ExternalAuthUiState
 import net.nomia.core.ui.compose.stringValue
 
 @Composable

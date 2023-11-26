@@ -13,7 +13,6 @@ dependencyResolutionManagement {
 
 include(":pos:app")
 include(":pos:auth")
-include(":pos:dashboard")
 include(":core:core")
 include(":common-ui")
 include(":pos:common-data")

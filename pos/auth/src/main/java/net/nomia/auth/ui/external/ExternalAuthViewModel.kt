@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.transformLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import net.nomia.auth.R
+import net.nomia.auth.ui.external.model.Code
 import net.nomia.common.data.Constants.SharingStartedWithDefaultTimeout
 import net.nomia.common.data.model.IdentityType
 import net.nomia.common.data.model.SignInResponse
@@ -41,8 +42,7 @@ import net.nomia.pos.core.data.Constraints.MAX_PASSWORD_LENGTH
 import net.nomia.pos.core.data.Response
 import net.nomia.pos.core.exception.NetworkException
 import net.nomia.pos.core.text.Content
-import net.nomia.pos.ui.auth.external.model.ExternalAuthUiState
-import net.nomia.auth.ui.internal.model.Code
+import net.nomia.auth.ui.external.model.ExternalAuthUiState
 import net.nomia.settings.domain.SettingsRepository
 import net.nomia.settings.domain.model.ServerProvider
 import javax.inject.Inject

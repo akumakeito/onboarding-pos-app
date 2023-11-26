@@ -1,4 +1,4 @@
-package net.nomia.pos.ui.auth.external.model
+package net.nomia.auth.ui.external.model
 
 import androidx.annotation.StringRes
 import net.nomia.auth.R

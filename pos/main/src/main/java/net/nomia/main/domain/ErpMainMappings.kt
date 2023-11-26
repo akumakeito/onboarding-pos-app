@@ -22,7 +22,6 @@ import net.nomia.erp.schema.fragment.OrganizationFragment
 import net.nomia.erp.schema.fragment.TerminalFragment
 import net.nomia.erp.schema.type.IdentityType
 import net.nomia.main.domain.model.Auth
-import net.nomia.main.domain.model.TerminalInput
 import java.util.Currency
 import net.nomia.erp.schema.type.RoleCode as ApiRoleCode
 
@@ -74,16 +73,6 @@ fun TerminalFragment.toDomain(deviceType: Terminal.DeviceType) = Terminal(
     storeId = Store.ID(store!!.fragments.mainStoreFragment.id),
     orderSequence = orderSequence ?: 0,
     organization = store.organization.fragments.organizationFragment.toDomain(),
-    deviceType = deviceType,
-)
-
-fun TerminalInput.toDomain(deviceType: Terminal.DeviceType) = Terminal(
-    id = id!!,
-    name = name,
-    organization = organization,
-    storeId = store.id,
-    menu = menu,
-    orderSequence = orderSequence,
     deviceType = deviceType,
 )
 

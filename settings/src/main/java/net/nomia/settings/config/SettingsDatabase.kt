@@ -12,14 +12,12 @@ import net.nomia.pos.core.converter.LocalDateConverter
 import net.nomia.pos.core.converter.LocalTimeConverter
 import net.nomia.pos.core.converter.UUIDConverter
 import net.nomia.settings.data.local.dao.SettingsDao
-import net.nomia.settings.data.local.dao.TerminalDao
 import net.nomia.settings.data.local.entity.SettingsEntity
 import net.nomia.settings.data.local.entity.TerminalEntity
 
 @Database(
     entities = [
         SettingsEntity::class,
-        TerminalEntity::class,
     ],
     version = 1,
 )
@@ -37,5 +35,4 @@ import net.nomia.settings.data.local.entity.TerminalEntity
 )
 abstract class SettingsDatabase : RoomDatabase() {
     abstract fun settingsDao(): SettingsDao
-    abstract fun terminalDao(): TerminalDao
 }

@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalTextApi::class)
 
-package net.nomia.auth.ui.internal.model
+package net.nomia.auth.ui.external.model
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -69,6 +69,7 @@ internal inline fun DrawScope.drawPinPattern(
 }
 
 //redraw a pin dot to an entered text
+@OptIn(ExperimentalTextApi::class)
 internal inline fun DrawScope.drawNumericPattern(
     position: Int,
     value: Code.Numeric,

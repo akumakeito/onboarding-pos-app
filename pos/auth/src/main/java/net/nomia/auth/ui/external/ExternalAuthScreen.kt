@@ -29,11 +29,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import net.nomia.auth.R
-import net.nomia.auth.ui.PosSetupDestination
 import net.nomia.common.data.model.SignInResponse
 import net.nomia.common.ui.composable.NomiaBasicScrollableScaffold
 import net.nomia.common.ui.previews.ThemePreviews
@@ -44,10 +42,9 @@ import net.nomia.auth.ui.external.composable.ExternalActionForm
 import net.nomia.auth.ui.external.composable.ExternalAuthContent
 import net.nomia.auth.ui.external.composable.LogInForm
 import net.nomia.auth.ui.external.composable.WelcomeForm
-import net.nomia.auth.ui.getDestination
-import net.nomia.pos.ui.auth.external.model.ExternalAuthUiState
-import net.nomia.auth.ui.internal.model.Code
+import net.nomia.auth.ui.external.model.ExternalAuthUiState
 import net.nomia.core.ui.compose.stringValue
+import net.nomia.auth.ui.external.model.Code
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -122,12 +119,7 @@ fun ExternalAuthScreen(
                 },
                 onLogIn = viewModel::actionLogin,
                 onAuthSuccessed = {
-                    viewModel.authSuccessEvent.filter { it }
-                        .onEach {
-                            navController.popBackStack()
-                            navController.navigate(PosSetupDestination.getDestination())
-                        }
-                        .launchIn(this)
+                    // TODO
                 },
                 onResendCode = viewModel::resendCode,
             )

@@ -1,7 +1,6 @@
 package net.nomia.main.domain
 
 import com.apollographql.apollo.request.RequestHeaders
-import com.auth0.android.jwt.JWT
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -15,13 +14,11 @@ import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.flow.transformLatest
 import net.nomia.common.data.model.LostPasswordResponse
 import net.nomia.common.data.model.SignInResponse
-import net.nomia.common.data.model.Terminal
 import net.nomia.erp.api.ErpClientService
 import net.nomia.erp.api.exception.NomiaNoMenusException
 import net.nomia.erp.api.exception.NomiaRateLimitException
 import net.nomia.erp.api.exception.NomiaUnknownUserException
 import net.nomia.erp.apiFlow
-import net.nomia.erp.mutation.CreateApplicationTokenMutation
 import net.nomia.erp.mutation.LogInByCodeMutation
 import net.nomia.erp.mutation.LogInByPasswordMutation
 import net.nomia.erp.mutation.LostPasswordMutation
@@ -35,7 +32,6 @@ import net.nomia.pos.core.data.Response
 import net.nomia.pos.core.exception.NetworkException
 import net.nomia.pos.core.exception.NomiaException
 import net.nomia.pos.core.text.Content
-import net.nomia.settings.domain.model.ApplicationToken
 import timber.log.Timber
 import java.time.Duration
 import javax.inject.Inject
@@ -164,22 +160,6 @@ class ErpLoginRepository @Inject constructor(
 
             delay(duration)
         }
-    }
-
-    fun createApplicationToken(auth: Auth, terminal: Terminal): Flow<ApplicationToken> {
-        return erpClientService.principalClient(
-            token = auth.accessToken,
-            organizationId = terminal.organization.id
-        ).take(1).flatMapLatest { client ->
-            client.mutate(
-                CreateApplicationTokenMutation(
-                    name = terminal.name,
-                    storeId = terminal.storeId.value,
-                    terminalId = terminal.id.value
-                )
-            ).apiFlow()
-        }.mapLatest { ApplicationToken(accessToken = JWT(it.data!!.createApplicationToken)) }
-            .flowOn(Dispatchers.IO)
     }
 
     companion object {

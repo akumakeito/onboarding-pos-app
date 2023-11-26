@@ -5,6 +5,6 @@ package net.nomia.pos.ui
 import com.compose.type_safe_args.annotation.ComposeDestination
 
 @ComposeDestination
-interface ManagerScreenDestination {
+interface OnboardingDestination {
     companion object
 }

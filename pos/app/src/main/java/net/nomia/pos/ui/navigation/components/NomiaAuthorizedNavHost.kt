@@ -5,8 +5,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import net.nomia.pos.ui.ManagerScreenDestination
+import net.nomia.pos.ui.OnboardingDestination
 import net.nomia.pos.ui.argumentList
+import net.nomia.pos.ui.onboarding.Onboarding
 import net.nomia.pos.ui.route
 
 @Composable
@@ -15,15 +16,13 @@ internal fun NomiaAuthorizedNavHost(
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = ManagerScreenDestination.route
+        startDestination = OnboardingDestination.route
     ) {
         composable(
-            route = ManagerScreenDestination.route,
-            arguments = ManagerScreenDestination.argumentList
+            route = OnboardingDestination.route,
+            arguments = OnboardingDestination.argumentList
         ) {
-            /**
-             * YOUR CODE GOES HERE
-             */
+            Onboarding()
         }
     }
 }

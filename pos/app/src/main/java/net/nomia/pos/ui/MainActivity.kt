@@ -18,13 +18,14 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.core.view.MenuProvider
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
-import net.nomia.auth.navigation.components.NomiaExternalAuthNavHost
-import net.nomia.auth.navigation.components.NomiaInternalAuthNavHost
+import net.nomia.auth.navigation.components.NomiaUnauthorizedNavHost
 import net.nomia.common.ui.theme.NomiaThemeMaterial3
 import net.nomia.common.ui.theme.model.useDarkTheme
 import net.nomia.core.ui.compose.LocalResourcesProvider
@@ -59,8 +60,7 @@ class MainActivity : ComponentActivity() {
             val widthSizeClass = calculateWindowSizeClass(this).widthSizeClass
 
             val applicationViewModel: ApplicationViewModel = hiltViewModel()
-            val customTheme by applicationViewModel.customTheme.collectAsState()
-            val useDarkTheme = useDarkTheme(customTheme)
+            val useDarkTheme = false
             val appStartDestination by applicationViewModel.appStartDestination.collectAsState()
 
             CompositionLocalProvider(
@@ -85,11 +85,8 @@ class MainActivity : ComponentActivity() {
                         }
 
                         when (appStartDestination) {
-                            AppStartDestination.ExternalAuth ->
-                                NomiaExternalAuthNavHost(widthSizeClass = widthSizeClass)
-
-                            AppStartDestination.InternalAuth ->
-                                NomiaInternalAuthNavHost()
+                            AppStartDestination.Unauthorized ->
+                                NomiaUnauthorizedNavHost(widthSizeClass = widthSizeClass)
 
                             AppStartDestination.Authorized ->
                                 NomiaAuthorizedNavHost()

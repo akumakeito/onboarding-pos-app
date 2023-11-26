@@ -2,7 +2,6 @@ package net.nomia.auth.domain
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import net.nomia.main.config.MainDatabase
 import net.nomia.settings.config.SettingsDatabase
 
 interface LogoutUseCase {
@@ -11,15 +10,11 @@ interface LogoutUseCase {
 
 class LogoutUseCaseImpl(
     private val settingsDatabase: SettingsDatabase,
-    private val mainDatabase: MainDatabase,
 ) : LogoutUseCase {
 
     override suspend fun invoke() {
         withContext(Dispatchers.IO) {
             settingsDatabase.settingsDao().deleteAll()
-            settingsDatabase.terminalDao().deleteAll()
-
-            mainDatabase.clearAllTables()
         }
     }
 }
