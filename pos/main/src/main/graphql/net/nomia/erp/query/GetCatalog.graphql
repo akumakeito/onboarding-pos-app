@@ -1,0 +1,6 @@
+query GetCatalog {
+    catalogByOrganization {
+        id
+        name
+    }
+}
