@@ -1,5 +1,5 @@
 package net.nomia.main.domain.model
 
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
-class Principal(val auth: StateFlow<Auth>)
+class Principal(val auth: Flow<Auth>)

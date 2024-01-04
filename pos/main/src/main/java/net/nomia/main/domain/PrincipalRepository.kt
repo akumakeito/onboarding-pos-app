@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -32,7 +33,7 @@ class PrincipalRepository @Inject constructor(
                 if (authData != null) {
                     val auth = Auth(JWT(authData.accessToken), JWT(authData.refreshToken))
                     val authFlow = erpLoginRepository.watchRefreshToken(auth)
-                        .stateIn(scope, SharingStarted.Eagerly, auth)
+                        .shareIn(scope, SharingStarted.Eagerly, 1)
                     principal.update { Principal(authFlow) }
                 } else {
                     principal.update { null }
