@@ -7,7 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import net.nomia.pos.ui.OnboardingDestination
 import net.nomia.pos.ui.argumentList
-import net.nomia.pos.ui.onboarding.Onboarding
+import net.nomia.onboarding.ui.external.OnboardingScreen
 import net.nomia.pos.ui.route
 
 @Composable
@@ -22,7 +22,7 @@ internal fun NomiaAuthorizedNavHost(
             route = OnboardingDestination.route,
             arguments = OnboardingDestination.argumentList
         ) {
-            Onboarding()
+            OnboardingScreen()
         }
     }
 }

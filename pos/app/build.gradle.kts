@@ -65,6 +65,7 @@ android {
         resources.excludes.add("META-INF/notice.txt")
         resources.excludes.add("META-INF/ASL2.0")
         resources.excludes.add("META-INF/*.kotlin_module")
+        resources.excludes.add("META-INF/versions/9/OSGI-INF/MANIFEST.MF")
         resources.excludes.add("about.*")
         resources.excludes.add("logback.xml")
         resources.excludes.add("modeling32.png")
@@ -135,6 +136,7 @@ dependencies {
 
 
     implementation(project(":pos:auth"))
+    implementation(project(":pos:onboarding"))
     implementation(project(":core:core"))
     implementation(project(":core:common:network"))
     implementation(project(":core:common:utils"))

@@ -22,6 +22,7 @@ splashScreen = "1.0.1"
 activity = "1.7.2"
 appcompat = "1.6.1"
 material = "1.9.0"
+identityJvm = "202408.1"
 
 [libraries]
 #Android
@@ -184,6 +185,7 @@ svg = "com.caverock:androidsvg-aar:1.4"
 toolargetool = "com.gu.android:toolargetool:0.3.0"
 plot = "com.github.madrapps:plot:0.2.2"
 pinView = "io.github.chaosleung:pinview:1.4.4"
+identity-jvm = { group = "com.android.identity", name = "identity-jvm", version.ref = "identityJvm" }
 
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

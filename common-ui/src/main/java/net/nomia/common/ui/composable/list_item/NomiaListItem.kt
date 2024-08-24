@@ -202,6 +202,33 @@ fun NomiaCheckboxListItem(
 }
 
 @Composable
+fun NomiaRightSideCheckboxListItem(
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    checked: Boolean = false,
+    colors: NomiaListItemColors = NomiaListItemDefault.colors(enabled = enabled),
+    leadingContent: @Composable (() -> Unit)? = null,
+    headlineText: @Composable () -> Unit,
+    onClick: (Boolean) -> Unit
+) {
+    NomiaListItem(
+        headlineText = headlineText,
+        modifier = modifier.clickableNoIndication(enabled = enabled, onClick = { onClick(!checked) }),
+        enabled = enabled,
+        colors = colors,
+        leadingContent = leadingContent,
+        trailingContent = {
+            Checkbox(
+                modifier = Modifier.requiredSize(MaterialTheme.spacers.large),
+                checked = checked,
+                onCheckedChange = { onClick(it) },
+                enabled = enabled
+            )
+        },
+    )
+}
+
+@Composable
 fun NomiaSwitchListItem(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -489,6 +516,24 @@ private fun NomiaListItemPreviews(
                     trailingContent = trailingContent,
                     leadingContent = leadingContent,
                     supportingText = supportingContent
+                )
+
+                Divider()
+                NomiaCheckboxListItem(
+                    onClick = {},
+                    enabled = false,
+                    headlineText = headlineContent,
+                    extraHeadlineText = extraHeadlineContent,
+                    trailingContent = trailingContent,
+                    supportingText = supportingContent
+                )
+
+                Divider()
+                NomiaRightSideCheckboxListItem(
+                    onClick = {},
+                    enabled = false,
+                    headlineText = headlineContent,
+                    leadingContent = leadingContent,
                 )
             }
         }

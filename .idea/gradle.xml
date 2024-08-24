@@ -4,10 +4,19 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/buildSrc" name="buildSrc">
+                <projects>
+                  <project path="$PROJECT_DIR$/buildSrc" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="jbr-17" />
+        <option name="gradleJvm" value="#GRADLE_LOCAL_JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -33,13 +42,14 @@
             <option value="$PROJECT_DIR$/pos/app" />
             <option value="$PROJECT_DIR$/pos/auth" />
             <option value="$PROJECT_DIR$/pos/common-data" />
-            <option value="$PROJECT_DIR$/pos/dashboard" />
             <option value="$PROJECT_DIR$/pos/erp-api" />
             <option value="$PROJECT_DIR$/pos/erp-schema" />
             <option value="$PROJECT_DIR$/pos/main" />
+            <option value="$PROJECT_DIR$/pos/onboarding" />
             <option value="$PROJECT_DIR$/settings" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
