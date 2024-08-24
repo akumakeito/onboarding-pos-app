@@ -1,0 +1,11 @@
+mutation CreateStore($storeCreateInput: StoreCreateInput!) {
+    createStoreV2(storeCreateInput : $storeCreateInput) {
+        errorMessage
+        result
+        output {
+            id
+            name
+        }
+        transactionId
+    }
+}
