@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId = "net.nomia.pos"
-        minSdk = 22
+        minSdk = 23
         compileSdk = 33
         versionCode = 1
         versionName = "1.0"

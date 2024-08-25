@@ -1,6 +1,5 @@
 package net.nomia.onboarding.domain.repository
 
-import android.util.Log
 import net.nomia.onboarding.domain.model.Store
 import net.nomia.pos.core.data.Response
 import javax.inject.Inject
@@ -15,8 +14,6 @@ internal class CreateStoreUseCaseImpl @Inject constructor(
 ) : CreateStoreUseCase {
 
     override suspend fun invoke(store: Store) : Response< out Unit> {
-        Log.d("OnboardingRepository", "CreateStoreUseCaseImpl: $store")
-
         return onboardingRepository.createStore(store = store)
     }
 

@@ -1,6 +1,5 @@
 package net.nomia.onboarding.ui.external.onboardingSteps
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -34,7 +33,6 @@ internal fun OnboardingTypeOfStore(
     }
 
     LaunchedEffect(key1 = checkedStoreTypes) {
-        Log.d("OnboardingViewModel", "checkedStoreTypes launcheff = ${store.storeTypes}")
         onStoreTypeSelectedListChanged(checkedStoreTypes)
     }
 

@@ -1,7 +1,6 @@
 package net.nomia.onboarding.ui.external
 
 import android.app.Activity
-import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -12,7 +11,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -58,9 +56,6 @@ fun OnboardingScreen(
     val userName = viewModel.userName.collectAsState()
     val userEmailOrPhone = viewModel.userEmailOrPhone.collectAsState()
 
-    LaunchedEffect(orientation) {
-        Log.d("OnboardingScreen", "Orientation changed: $orientation")
-    }
     NomiaScrollableScaffold(
         title = {
             Icon(
@@ -133,6 +128,9 @@ fun OnboardingScreen(
                             },
                             name = userName.value,
                             phoneEmail = userEmailOrPhone.value,
+                            onDone = {
+                                viewModel.navigateToNextStep()
+                            }
                         )
                     }
                 }
@@ -171,7 +169,10 @@ fun OnboardingScreen(
                                 viewModel.updateIsNewStore(it)
                             },
                             storeData = storeData.value,
-                            isNewStore = isNewStore.value
+                            isNewStore = isNewStore.value,
+                            onDone = {
+                                viewModel.navigateToNextStep()
+                            }
                         )
                     }
                 }
@@ -186,7 +187,6 @@ fun OnboardingScreen(
                             (uiState as ExternalOnboardingUiState.TypeOfStore).storeTypeList,
                             store = storeData.value
                         ) {
-                            Log.d("OnboardingViewModel", "updateStoreTypes from mainscreen $it")
                             viewModel.updateStoreTypes(it)
                         }
                     }
@@ -219,6 +219,9 @@ fun OnboardingScreen(
                                     OnboardingIntFields.SEATING_CAPACITY,
                                     it.toIntValue()
                                 )
+                            },
+                            onDone = {
+                                viewModel.navigateToNextStep()
                             },
                             store = storeData.value
 

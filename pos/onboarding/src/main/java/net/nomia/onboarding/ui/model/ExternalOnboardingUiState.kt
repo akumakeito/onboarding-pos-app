@@ -44,7 +44,7 @@ sealed interface ExternalOnboardingUiState {
         override val titleResId: Int = R.string.whats_your_type_of_store,
         override val subtitleResId: Int = R.string.tell_about_your_business,
         override val numberOfStep: Int = 3,
-        override val canSkipStep: Boolean = true,
+        override val canSkipStep: Boolean = false,
         override val canGoBack: Boolean = true,
     ) : ExternalOnboardingUiState
 
@@ -65,7 +65,7 @@ sealed interface ExternalOnboardingUiState {
         override val titleResId: Int = R.string.what_are_your_services,
         override val subtitleResId: Int? = null,
         override val numberOfStep: Int = 5,
-        override val canSkipStep: Boolean = true,
+        override val canSkipStep: Boolean = false,
         override val canGoBack: Boolean = true,
     ) : ExternalOnboardingUiState
 

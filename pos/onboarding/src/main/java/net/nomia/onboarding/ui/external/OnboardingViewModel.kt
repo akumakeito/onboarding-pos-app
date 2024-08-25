@@ -1,6 +1,5 @@
 package net.nomia.onboarding.ui.external
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -87,16 +86,13 @@ class OnboardingViewModel @Inject constructor(
 
         if (_currentOnboardingUiState.value.numberOfStep == ExternalOnboardingUiState.values().size - 1) {
             createStoreAndSaveUserData()
-
-            updateUserData(USER_NAME, _userName.value)
-            updateUserData(USER_EMAIL_OR_PHONE, _userEmailOrPhone.value)
+        } else {
+            ExternalOnboardingUiState.values()
+                .find { it.numberOfStep == _currentOnboardingUiState.value.numberOfStep + 1 }?.let {
+                    _currentOnboardingUiState.value = it
+                }
         }
-        ExternalOnboardingUiState.values()
-            .find { it.numberOfStep == _currentOnboardingUiState.value.numberOfStep + 1 }?.let {
-                _currentOnboardingUiState.value = it
-            }
         updateButtonEnabled()
-
     }
 
     fun navigateToPreviousStep() {
@@ -241,25 +237,24 @@ class OnboardingViewModel @Inject constructor(
 
         _currentOnboardingUiState.value = ExternalOnboardingUiState.TypeOfServices(loading = true)
 
+        updateUserData(USER_NAME, _userName.value)
+        updateUserData(USER_EMAIL_OR_PHONE, _userEmailOrPhone.value)
         val result = createStoreUseCase(_store.value)
 
-            when (result) {
-                is Response.Success<*> -> {
-                    _currentOnboardingUiState.update {
-                        ExternalOnboardingUiState.TypeOfServices(loading = false)
-                        ExternalOnboardingUiState.ApplicationIsReady()
-                    }
+        when (result) {
+            is Response.Success<*> -> {
+                _currentOnboardingUiState.update {
+                    ExternalOnboardingUiState.ApplicationIsReady()
                 }
-
-                is Response.Error -> {
-                    _currentOnboardingUiState.value = ExternalOnboardingUiState.TypeOfServices(
-                        loading = false,
-                        errorMessage = result.message
-                    )
-                }
-
-                else -> {}
             }
+            is Response.Error -> {
+                _currentOnboardingUiState.value = ExternalOnboardingUiState.TypeOfServices(
+                    loading = false,
+                    errorMessage = result.message
+                )
+            }
+            else -> {}
+        }
     }
 
     private fun checkState(vararg args: Any?) {
@@ -271,8 +266,6 @@ class OnboardingViewModel @Inject constructor(
                 else -> false
             }
         }
-
-
     }
 }
 
